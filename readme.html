@@ -1,0 +1,330 @@
+<p>
+    <a href="https://www.npmjs.com/package/sprestlib"><img src="https://img.shields.io/npm/v/sprestlib.svg" alt="npm version" /></a>
+    <a href="https://github.com/gitbrent/SpRestLib/blob/master/LICENSE"><img src="https://img.shields.io/github/license/gitbrent/sprestlib.svg" alt="MIT License" /></a>
+    <a href="https://snyk.io/test/npm/sprestlib"><img src="https://snyk.io/test/npm/sprestlib/badge.svg" alt="Known Vulnerabilities" /></a>
+    <a href="https://github.com/gitbrent/sprestlib"><img src="http://npm.packagequality.com/shield/sprestlib.png?style=flat-square" alt="Package Quality" /></a>
+    <a href="https://www.jsdelivr.com/package/npm/sprestlib"><img src="https://data.jsdelivr.com/v1/package/npm/sprestlib/badge" alt="jsDelivr Stats" /></a>
+</p>
+<h1>SpRestLib</h1>
+<h2>Microsoft SharePoint REST JavaScript Library</h2>
+<p>SpRestLib is a lightweight wrapper around the SharePoint REST API that can be used in client browsers or server-side.</p>
+<p>This library is for developers who build web parts embedded into Content Editor/Script Editor, SPFx web parts, Angular/React apps, Node.js/npm-based solutions, etc. Using SpRestLib greatly simplifies SharePoint integration by reducing common operations
+    to concise Promise-based methods.</p>
+<h3>Library Features</h3>
+<ul>
+    <li>Simple - Clean, concise API: Get users, sites, list items, etc. in 1-3 lines of code</li>
+    <li>Modern - Lightweight, pure JavaScript solution with no other dependencies</li>
+    <li>Elegant - Utilizes the new <a href="http://www.datchley.name/es6-promises/">ES6 Promise</a> architecture for asynchronous operations</li>
+    <li>Robust - Handles authentication, asynchronous errors, results paging and more</li>
+</ul>
+<h3>SharePoint Interfaces</h3>
+<ul>
+    <li>List Methods - Create, read, update, and delete (CRUD) List/Library items, including support for paging/next</li>
+    <li>User Methods - Get User information: Basic (ID, Email, LoginName, etc.) and UserProfile (Manager, 100+ Properties)</li>
+    <li>Site Methods - Get Site information (Lists, Groups, Users, Roles, Subsites and Permissions)</li>
+    <li>File Methods - Get files, file properties/permissions, delete/recycle files</li>
+    <li>Folder Methods - Get folder contents, folder properties/permissions, create/delete/recycle folders</li>
+    <li>REST Methods - Execute REST API calls against any available <a href="https://msdn.microsoft.com/en-us/library/office/dn268594.aspx">SharePoint REST API</a> endpoint</li>
+    <li>Form Population - Populate form elements using data-bind declarative binding system like Knockout or AngluarJS</li>
+</ul>
+<h3>Supported Environments</h3>
+<ul>
+    <li>SharePoint 2013 (SP2013), SharePoint 2016 (SP2016), SharePoint 2019 (SP2019), SharePoint Online (SPO)</li>
+</ul>
+<hr />
+<h1>Method Overview</h1>
+<h2>REST API</h2>
+<ul>
+    <li>
+        <code>sprLib.rest(options)</code> - Returns the results of a given REST call to any <a href="https://msdn.microsoft.com/en-us/library/office/dn268594.aspx">SharePoint REST API</a>
+    </li>
+</ul>
+<h2>List/Library</h2>
+<ul>
+    <li>
+        <code>sprLib.list(listName).items()</code> - Returns an array of <code>SP.ListItem</code> objects using a variety of query options</li>
+    <li>
+        <code>sprLib.list(listName).create()</code> - Create a new list item using JSON data</li>
+    <li>
+        <code>sprLib.list(listName).update()</code> - Update an existing item using JSON data</li>
+    <li>
+        <code>sprLib.list(listName).delete()</code> - Delete an existing item using JSON data (permanently delete)</li>
+    <li>
+        <code>sprLib.list(listName).recycle()</code> - Recycle an existing item using JSON data (move to Recycle Bin)</li>
+    <li>
+        <code>sprLib.list(listName).cols()</code> - Returns an array of column properties (datatype, default values, etc.)</li>
+    <li>
+        <code>sprLib.list(listName).info()</code> - Returns <code>SP.List</code> properties (last modified, number of items, etc.)</li>
+    <li>
+        <code>sprLib.list(listName).perms()</code> - Returns an array of the list's Member Role assignments</li>
+</ul>
+<h2>File</h2>
+<ul>
+    <li>
+        <code>sprLib.file(fileName).get()</code> - Returns a file (binary/text) as a blob which can be saved</li>
+    <li>
+        <code>sprLib.file(fileName).info()</code> - Returns <code>SP.File</code> properties (Created, GUID, HasUniquePerms, etc.)</li>
+    <li>
+        <code>sprLib.file(fileName).perms()</code> - Returns an array of the file's Member Role assignments</li>
+    <li>
+        <code>sprLib.file(fileName).checkin()</code> - Check in a file (supports optional comments/checkin types)</li>
+    <li>
+        <code>sprLib.file(fileName).checkout()</code> - Check out a file</li>
+    <li>
+        <code>sprLib.file(fileName).delete()</code> - Permanently deletes a file (bypasses recycle bin)</li>
+    <li>
+        <code>sprLib.file(fileName).recycle()</code> - Moves file to the site Recycle Bin</li>
+</ul>
+<h2>Folder</h2>
+<ul>
+    <li>
+        <code>sprLib.folder(folderName).files()</code> - Returns an array of file objects contained in the folder</li>
+    <li>
+        <code>sprLib.folder(folderName).folders()</code> - Returns an array of folder objects contained in the folder</li>
+    <li>
+        <code>sprLib.folder(folderName).info()</code> - Returns <code>SP.Folder</code> properties (Created, GUID, HasUniquePerms, etc.)</li>
+    <li>
+        <code>sprLib.folder(folderName).perms()</code> - Returns an array of the folder's Member Role assignments</li>
+    <li>
+        <code>sprLib.folder(folderName).add()</code> - Creates a new folder under the parent folder</li>
+    <li>
+        <code>sprLib.folder(folderName).delete()</code> - Permanently deletes a folder (bypasses recycle bin)</li>
+    <li>
+        <code>sprLib.folder(folderName).recycle()</code> - Moves folder to the site Recycle Bin</li>
+</ul>
+<h2>Site Collection/Subsite</h2>
+<ul>
+    <li>
+        <code>sprLib.site(siteUrl).groups()</code> - Returns an array of the site's Groups and Members</li>
+    <li>
+        <code>sprLib.site(siteUrl).info()</code> - Returns <code>SP.Web</code> site properties (ID, Owner, Language, Logo, etc.)</li>
+    <li>
+        <code>sprLib.site(siteUrl).lists()</code> - Returns an array of the site's Lists/Libraries</li>
+    <li>
+        <code>sprLib.site(siteUrl).perms()</code> - Returns an array of the site's Member/Roles objects</li>
+    <li>
+        <code>sprLib.site(siteUrl).roles()</code> - Returns an array of the site's Roles</li>
+    <li>
+        <code>sprLib.site(siteUrl).subsites()</code> - Returns an array of the site's Subsites</li>
+    <li>
+        <code>sprLib.site(siteUrl).users()</code> - Returns an array of the site's Users and their base permissions</li>
+</ul>
+<h2>User Groups/Info/Profile</h2>
+<ul>
+    <li>
+        <code>sprLib.user(options).groups()</code> - Returns <code>SP.Group</code> group properties (Id, Owner, Title, etc.)</li>
+    <li>
+        <code>sprLib.user(options).info()</code> - Returns <code>SP.User</code> user properties (Id, Email, Login, Title, etc.)</li>
+    <li>
+        <code>sprLib.user(options).profile()</code> - Returns <code>SP.UserProfile.PersonProperties</code> (DirectReports, PictureUrl, etc.)</li>
+</ul>
+<h2>Utility Methods</h2>
+<ul>
+    <li>
+        <code>sprLib.renewSecurityToken()</code> - Refreshes the SharePoint page security digest token (<code>__REQUESTDIGEST</code>)</li>
+</ul>
+<h2>SpRestLib-UI :: Form Population</h2>
+<ul>
+    <li>
+        <code>data-sprlib{options}</code> - Populates the parent tag using the options provided</li>
+</ul>
+<hr />
+
+
+<ul>
+    <li>
+        <a href="#library-demo">Library Demo</a>
+        <ul>
+            <li>
+                <a href="#demo-via-browser-console">Demo via Browser Console</a>
+            </li>
+            <li>
+                <a href="#demo-via-page-web-part">Demo via Page Web Part</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#installation">Installation</a>
+        <ul>
+            <li>
+                <a href="#cdn">CDN</a>
+            </li>
+            <li>
+                <a href="#download">Download</a>
+            </li>
+            <li>
+                <a href="#npm">npm</a>
+            </li>
+            <li>
+                <a href="#yarn">yarn</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#method-reference">Method Reference</a>
+        <ul>
+            <li>
+                <a href="#rest-api-methods">REST API Methods</a>
+            </li>
+            <li>
+                <a href="#listlibrary-methods-splist">List/Library Methods (<code>SP.List</code>)</a>
+            </li>
+            <li>
+                <a href="#file-methods-spfile">File Methods (<code>SP.File</code>)</a>
+            </li>
+            <li>
+                <a href="#folder-methods-spfolder">Folder Methods (<code>SP.Folder</code>)</a>
+            </li>
+            <li>
+                <a href="#site-methods-spweb">Site Methods (<code>SP.Web</code>)</a>
+            </li>
+            <li>
+                <a href="#user-methods-spuser">User Methods (<code>SP.User</code>)</a>
+            </li>
+            <li>
+                <a href="#utility-methods">Utility Methods</a>
+            </li>
+            <li>
+                <a href="#form-binding-sprestlib-ui">Form Binding (SpRestLib UI)</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#library-features-and-notes">Library Features and Notes</a>
+        <ul>
+            <li>
+                <a href="#async-operations-via-promises">Async Operations via Promises</a>
+            </li>
+            <li>
+                <a href="#sharepoint-authentication-notes">SharePoint Authentication Notes</a>
+            </li>
+            <li>
+                <a href="#integration-with-other-libraries">Integration with Other Libraries</a>
+            </li>
+            <li>
+                <a href="#connect-to-sharepoint-onlineofficecom-with-nodejs">Connect to SharePoint Online/Office.com with Node.js</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#issues--suggestions">Issues / Suggestions</a>
+        <ul>
+            <li>
+                <a href="#authentication">Authentication</a>
+            </li>
+            <li>
+                <a href="#bugs">Bugs</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#supported-sharepoint-versions">Supported SharePoint Versions</a>
+        <ul>
+            <li>
+                <a href="#backwards-compatibility">Backwards Compatibility</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#special-thanks">Special Thanks</a>
+    </li>
+    <li>
+        <a href="#license">License</a>
+    </li>
+</ul>
+
+<hr />
+<h1>Library Demo</h1>
+<h2>Demo via Browser Console</h2>
+<p>It's really easy to test drive SpRestLib!</p>
+<p>Just open your browser's Developer Tools window anywhere on your SharePoint site, then run the following code snippet which will load the SpRestLib bundle script dynamically:</p>
+<pre><code class="language-javascript">// Load/Demo SpRestLib via CDN
+var script = document.createElement('script');
+script.src = &quot;https://cdn.jsdelivr.net/gh/gitbrent/sprestlib@1.9.0/dist/sprestlib.bundle.js&quot;;
+script.onload = function(){
+    // Demo library method - show current user info
+    console.log('Current SharePoint User: ');
+    sprLib.user().info().then( objUser =&gt; console.log(objUser) );
+}
+document.getElementsByTagName('head')[0].appendChild(script);
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/gitbrent/SpRestLib/master/example/img/readme-tryitout-console.png" alt="Try It Out" /></p>
+<h2>Demo via Page Web Part</h2>
+<p>Upload the <code>example/sprestlib-demo.html</code> file to SiteAssets on your SharePoint site and add it into a web part for a live demo of all available methods.</p>
+<p><img src="https://raw.githubusercontent.com/gitbrent/SpRestLib/master/example/img/readme-demo-webpart.png" alt="Demo SharePoint Web Part" /></p>
+<hr />
+<h1>Installation</h1>
+<h2>CDN</h2>
+<pre><code class="language-javascript">&lt;script src=&quot;https://cdn.jsdelivr.net/gh/gitbrent/SpRestLib@1.9.0/dist/sprestlib.min.js&quot;&gt;&lt;/script&gt;
+// Use bundle for IE11 support
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/gitbrent/SpRestLib@1.9.0/dist/sprestlib.bundle.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2>Download</h2>
+<pre><code class="language-javascript">&lt;script src=&quot;/subsite/SiteAssets/js/sprestlib.min.js&quot;&gt;&lt;/script&gt;
+// Use bundle for IE11 support
+&lt;script src=&quot;/subsite/SiteAssets/js/sprestlib.bundle.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2>npm</h2>
+<pre><code class="language-javascript">npm install sprestlib
+
+var sprLib = require(&quot;sprestlib&quot;);
+</code></pre>
+<h2>yarn</h2>
+<pre><code class="language-javascript">yarn install sprestlib
+</code></pre>
+<hr />
+<h1>Method Reference</h1>
+<h2>REST API Methods</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/api-rest.html">REST API Methods</a></p>
+<h2>List/Library Methods (<code>SP.List</code>)</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/api-list.html">List/Library Methods</a></p>
+<h2>File Methods (<code>SP.File</code>)</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/api-file.html">File Methods</a></p>
+<h2>Folder Methods (<code>SP.Folder</code>)</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/api-folder.html">Folder Methods</a></p>
+<h2>Site Methods (<code>SP.Web</code>)</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/api-site.html">Site Methods</a></p>
+<h2>User Methods (<code>SP.User</code>)</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/api-user.html">User Methods</a></p>
+<h2>Utility Methods</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/feat-utilities.html">Utility Methods</a></p>
+<h2>Form Binding (SpRestLib UI)</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/ui-form-binding.html">Form Binding</a></p>
+<hr />
+<h1>Library Features and Notes</h1>
+<h2>Async Operations via Promises</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/feat-promises.html">JavaScript Async Promises</a></p>
+<h2>SharePoint Authentication Notes</h2>
+<p><a href="https://gitbrent.github.io/SpRestLib/docs/sp-auth-notes.html">SharePoint Authentication Notes</a></p>
+<h2>Integration with Other Libraries</h2>
+<p>Using SpRestLib with React, Angular, SharePoint Electron, etc.
+    <a href="https://gitbrent.github.io/SpRestLib/docs/feat-integration.html">Integration with Other Libraries</a></p>
+<h2>Connect to SharePoint Online/Office.com with Node.js</h2>
+<ul>
+    <li>SpRestLib can be utilized via Node.js to perform powerful operations, generate reports, etc.</li>
+    <li>See the <code>example</code> directory for a complete, working demo of connecting to SharePoint Online.</li>
+</ul>
+<hr />
+<h1>Issues / Suggestions</h1>
+<h2>Authentication</h2>
+<p>See <a href="https://gitbrent.github.io/SpRestLib/docs/sp-auth-notes.html">SharePoint Authentication Notes</a> for issues with authentication.</p>
+<h2>Bugs</h2>
+<p>Please file issues or suggestions on the <a href="https://github.com/gitbrent/SpRestLib/issues/new">issues page on GitHub</a>, or even better, <a href="https://github.com/gitbrent/SpRestLib/pulls">submit a pull request</a>. Feedback is always welcome!</p>
+<p>When reporting issues, please include a code snippet or a link demonstrating the problem.</p>
+<hr />
+<h1>Supported SharePoint Versions</h1>
+<h2>Backwards Compatibility</h2>
+<p><em>Does SpRestLib support SharePoint 2010 or 2007?</em><br /> Unfortunately, older versions cannot be supported. The SharePoint 2007/2010 API utilized SOAP web services with XML (<code>_vti_bin/lists.asmx</code> endpoints) while the current API uses
+    a completely new (<code>_api/web/lists()</code> endpoint) backed by REST services.</p>
+<hr />
+<h1>Special Thanks</h1>
+<ul>
+    <li>
+        <a href="http://sympmarc.com/">Marc D Anderson</a> - SpRestLib is built in the spirit of the late, great <code>SPServices</code> library</li>
+    <li>Microsoft - for the SharePoint.com developer account</li>
+    <li>Everyone who submitted an Issue or Pull Request</li>
+</ul>
+<hr />
+<h1>License</h1>
+<p>Copyright © 2016-2019 <a href="https://github.com/gitbrent/SpRestLib">Brent Ely</a></p>
+<p><a href="https://github.com/gitbrent/SpRestLib/blob/master/LICENSE">MIT</a></p>
